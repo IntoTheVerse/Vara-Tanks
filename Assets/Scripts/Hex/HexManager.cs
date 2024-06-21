@@ -24,12 +24,15 @@ public class HexManager : MonoBehaviour
     public GameObject Hex;
     public Transform HexSpawner;
     public Vector2 size;
+    public bool gameScene = false;
     private List<Vector3> hexDatasScale = new();
     private List<HexData> hexDatas = new();
 
     private void Start()
     {
         SpawnHex();
+        SetData("H4sIAAAAAAAAA+1ROQ7DMAz7S2YPluuzXymyd+jeoejfS4p2gP4gQwDZkURKlOLP9truj9LDZee2PWxvvlQMl53b8FJPvFRLAZY771sJFqclD3HLAWr4gFcB4yiwOFmqVhsSRw+9ODHBzR5JimkQxP7LkkxBDoDDFMKxWCqSETDqN/FBMlM5ujS/AWs2OMTRZc7eVLyERp9DHNvOGQkKoeeazGaJeYs1Fiskq/5d1RRNWmKudGhoL1lzxlpEI6u7fnCNayRh1Yly1NDi/v0B5DibwiUFAAA=");
+        GetComponent<GameManager>().GameInit();
     }
 
     private void SpawnHex()
@@ -59,7 +62,7 @@ public class HexManager : MonoBehaviour
             hex = goLeft.GetComponent<Hex>()
         };
         hexDatas.Add(hexData);
-        hexData.hex.SetData(hexData);
+        hexData.hex.SetHexData(hexData);
     }
 
     public void GetData()
@@ -202,25 +205,33 @@ public class HexManager : MonoBehaviour
 
     private void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Input.GetMouseButton(0))
+        if (!gameScene)
         {
-            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Input.GetMouseButton(0))
             {
-                if (hit.transform.TryGetComponent(out IScalable hex))
+                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
                 {
-                    hex.ModifyHeight();
+                    if (hit.transform.TryGetComponent(out IScalable hex))
+                    {
+                        hex.ModifyHeight();
+                    }
+                }
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                foreach (var hex in hexDatas)
+                {
+                    hex.hex.InfluenceLost();
                 }
             }
         }
+    }
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            foreach (var hex in hexDatas)
-            {
-                hex.hex.InfluenceLost();
-            }
-        }
+    public HexData GetHexDataByPos(int pos)
+    {
+        return hexDatas[pos];
     }
 }

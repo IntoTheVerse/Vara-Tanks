@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Game.unity
     guid: cf0f41b10c35ebbc9bd3a9fe9842c7c0
   - enabled: 1
-    path: Assets/Scenes/Hex.unity
+    path: Assets/Scenes/HexModification.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hex
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e5a3b7864add9bf8da4ac49ae981c732, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -100,6 +104,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4747647d3668958da1b0ab3e6fde372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originalColor: {r: 0.11311853, g: 0.5849056, b: 0.1710573, a: 1}
+  moveableColor: {r: 0.19654529, g: 0.9191918, b: 0, a: 1}
+  hoverColor: {r: 0.83813304, g: 0.13162911, b: 0.13162911, a: 1}
 --- !u!64 &3435191438281476201
 MeshCollider:
   m_ObjectHideFlags: 0

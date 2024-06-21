@@ -5,11 +5,19 @@ public class Hex : MonoBehaviour, IScalable
     private HexModificationManager modManager;
     private int underInfluenceBy = 0;
     private Hex[] neighbours;
-    private HexData data;
+    private HexData hexData;
+    private Material material;
+
+    [Header("Colors")]
+    public Color originalColor;
+    public Color moveableColor;
+    public Color hoverColor;
 
     public void Start()
     {
         modManager = FindObjectOfType<HexModificationManager>();
+        material = GetComponent<MeshRenderer>().material;
+        material.color = originalColor;
     }
 
     public void ModifyHeight(float changeStrength = 0, int influencedBy = 0)
@@ -50,13 +58,38 @@ public class Hex : MonoBehaviour, IScalable
         underInfluenceBy = 0;
     }
 
-    public void SetData(HexData data)
-    {
-        this.data = data;
-    }
-
     public void SetNeighbours(Hex[] neighbours)
     {
         this.neighbours = neighbours;
+    }
+
+    public void SetHexData(HexData hexData)
+    {
+        this.hexData = hexData;
+    }
+
+    public HexData GetHexData()
+    {
+        return hexData;
+    }
+
+    public Hex[] GetNeighbours()
+    {
+        return neighbours;
+    }
+
+    public void ChangeToMoveableColor()
+    {
+        material.color = moveableColor;
+    }
+
+    public void ChangeToOriginalColor()
+    {
+        material.color = originalColor;
+    }
+
+    public void ChangeToHoverColor()
+    {
+        material.color = hoverColor;
     }
 }
