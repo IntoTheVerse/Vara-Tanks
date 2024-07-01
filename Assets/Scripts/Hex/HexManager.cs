@@ -32,7 +32,7 @@ public class HexManager : MonoBehaviour
     {
         SpawnHex();
         SetData("H4sIAAAAAAAAA+1ROQ7DMAz7S2YPluuzXymyd+jeoejfS4p2gP4gQwDZkURKlOLP9truj9LDZee2PWxvvlQMl53b8FJPvFRLAZY771sJFqclD3HLAWr4gFcB4yiwOFmqVhsSRw+9ODHBzR5JimkQxP7LkkxBDoDDFMKxWCqSETDqN/FBMlM5ujS/AWs2OMTRZc7eVLyERp9DHNvOGQkKoeeazGaJeYs1Fiskq/5d1RRNWmKudGhoL1lzxlpEI6u7fnCNayRh1Yly1NDi/v0B5DibwiUFAAA=");
-        GetComponent<GameManager>().GameInit();
+        if(gameScene) GetComponent<GameManager>().GameInit();
     }
 
     private void SpawnHex()

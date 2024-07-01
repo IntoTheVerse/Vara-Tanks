@@ -287,9 +287,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19a4dd4bb4136fb10a149a363344625d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hex: {fileID: 39984858278480750, guid: 25f68722754d1ea718d97fd956b8841e, type: 3}
+  Hex: {fileID: 5666067691322876193, guid: 25f68722754d1ea718d97fd956b8841e, type: 3}
   HexSpawner: {fileID: 139519428}
   size: {x: 10, y: 14}
+  gameScene: 0
 --- !u!4 &68719070
 Transform:
   m_ObjectHideFlags: 0

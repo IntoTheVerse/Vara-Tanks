@@ -1,4 +1,5 @@
 using UnityEngine;
+using Unity.Mathematics;
 
 public class Hex : MonoBehaviour, IScalable
 {
@@ -7,9 +8,12 @@ public class Hex : MonoBehaviour, IScalable
     private Hex[] neighbours;
     private HexData hexData;
     private Material material;
+    private Color originalColor;
 
     [Header("Colors")]
-    public Color originalColor;
+    public Color waterColor;
+    public Color grassColor;
+    public Color landColor;
     public Color moveableColor;
     public Color hoverColor;
 
@@ -17,7 +21,16 @@ public class Hex : MonoBehaviour, IScalable
     {
         modManager = FindObjectOfType<HexModificationManager>();
         material = GetComponent<MeshRenderer>().material;
+        GetOriginalColor();
         material.color = originalColor;
+    }
+
+    private void GetOriginalColor()
+    {
+        float scale = transform.localScale.z;
+        if (scale < 0.3f) originalColor = waterColor;
+        else if (scale < 0.8f) originalColor = grassColor;
+        else originalColor = landColor;
     }
 
     public void ModifyHeight(float changeStrength = 0, int influencedBy = 0)
